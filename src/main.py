@@ -11,6 +11,13 @@ import secret
 import messages
 
 
+DAY_X = datetime.datetime(
+    year=2019,
+    month=10,
+    day=1,
+    hour=12)
+
+
 def main():
     logging.basicConfig(
         format="[%(asctime)s] [%(levelname)s] [%(name)s] "
@@ -18,6 +25,7 @@ def main():
                "%(message)s",
         level=logging.DEBUG)
     updater = Updater(token=secret.token, use_context=True)
+    # updater.dispatcher.add_error_handler(on_error)
     updater.dispatcher.add_handler(CommandHandler(['start', 'help'],
                                                   start(messages.start)))
     updater.dispatcher.add_handler(ConversationHandler(
@@ -33,11 +41,7 @@ def main():
 
     updater.dispatcher.add_handler(CommandHandler('list_users', list_users))
 
-    # updater.job_queue.run_once(start_ss, DAY_X, context=updater)
-    updater.job_queue.run_once(
-        start_ss,
-        datetime.datetime.now() + datetime.timedelta(seconds=5),
-        context=updater)
+    updater.job_queue.run_once(start_ss, DAY_X, context=updater)
     updater.start_polling()
 
 
