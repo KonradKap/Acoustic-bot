@@ -28,7 +28,6 @@ def on_error(update, context):
 
 def start(message):
     def wrapper(update, context):
-        logging.debug("WRAPPER")
         context.bot.send_message(
             chat_id=update.message.chat_id,
             text=message)
@@ -40,7 +39,7 @@ def register_start(update, context):
         context.bot.send_message(
             chat_id=update.message.chat_id,
             text=messages.already_registered.format(
-                update.effective_user.username))
+                update.effective_user.first_name))
         return ConversationHandler.END
 
     context.bot.send_message(
@@ -58,10 +57,10 @@ def received_password(update, context):
     else:
         user = update.effective_user
         add_user(
-            User(user.id, user.username, update.message.chat_id))
+            User(user.id, user.first_name, update.message.chat_id))
         context.bot.send_message(
             chat_id=update.message.chat_id,
-            text=messages.successful_registration.format(user.username))
+            text=messages.successful_registration.format(user.first_name))
     return ConversationHandler.END
 
 

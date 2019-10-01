@@ -30,21 +30,23 @@ def _add_handlers(updater):
     updater.dispatcher.add_handler(CommandHandler(['start', 'help'],
                                                   start(messages.ss_help)))
     updater.dispatcher.add_handler(ConversationHandler(
-        entry_points=[CommandHandler('ask', message_start)],
-        states={
-            'waiting for message': [
-                MessageHandler(Filters.text,
-                               received_message('giver_chat_id'))]
-        },
-        fallbacks=[CommandHandler('cancel', cancel)]))
-    updater.dispatcher.add_handler(ConversationHandler(
-        entry_points=[CommandHandler('reply', message_start)],
+        entry_points=[CommandHandler('temudaje', message_start)],
         states={
             'waiting for message': [
                 MessageHandler(Filters.text,
                                received_message('taker_chat_id'))]
         },
         fallbacks=[CommandHandler('cancel', cancel)]))
+    updater.dispatcher.add_handler(ConversationHandler(
+        entry_points=[CommandHandler('santa', message_start)],
+        states={
+            'waiting for message': [
+                MessageHandler(Filters.text,
+                               received_message('giver_chat_id'))]
+        },
+        fallbacks=[CommandHandler('cancel', cancel)]))
+    updater.dispatcher.add_handler(CommandHandler('shrug',
+                                                  start(messages.shrug)))
 
 
 def start_ss(context):

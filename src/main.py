@@ -40,7 +40,13 @@ def main():
                                                   register_status))
 
     updater.dispatcher.add_handler(CommandHandler('list_users', list_users))
+    updater.dispatcher.add_handler(CommandHandler('shrug',
+                                                  start(messages.shrug)))
 
+    # updater.job_queue.run_once(
+    #     start_ss,
+    #     datetime.datetime.now() + datetime.timedelta(seconds=2),
+    #     context=updater)
     updater.job_queue.run_once(start_ss, DAY_X, context=updater)
     updater.start_polling()
 

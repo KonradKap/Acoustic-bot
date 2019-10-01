@@ -35,8 +35,8 @@ Tobie przypadł zaszczyt obdarowania prezentem {}a.
 """
 ss_help = """
 Nowe komendy to:
-/ask - Forwarduje wiadomość do Twojego prezentowanego.
-/reply - Odpowiada na pytanie Twojego SS-Mana
+/temudaje - Forwarduje wiadomość do Twojego prezentowanego.
+/santa - Odpowiada na pytanie Twojego SS-Mana
 (innymi słowy wysyła jemu wiadomość).
 
 Daily reminder
@@ -48,11 +48,13 @@ got_message = "_Masz 1 (słownie: jedną) nową wiadomość od {}:_"
 message_send = "_Wiadomość wysłana :)_"
 message_failed = "_Wiadomość niewysłana :(_\n_Poskarż się adminowi_"
 
+shrug = "¯\\_(ツ)_/¯"
+
 
 def who_to_alias(to_who):
     return {
-            'giver_chat_id': 'osoby która Ci daje prezent, '
-                             'użyj /reply, aby odpowiedzieć',
-            'taker_chat_id': 'osoby której dajesz prezent, '
-                             'użyj /ask, aby odpowiedzieć'
+            'giver_chat_id': 'osoby której dajesz prezent, '
+                             'użyj /temudaje, aby odpowiedzieć',
+            'taker_chat_id': 'osoby która Ci daje, '
+                             'użyj /santa, aby odpowiedzieć'
     }[to_who]
